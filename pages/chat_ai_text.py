@@ -25,6 +25,10 @@ with st.sidebar:
         st.session_state.gemini_api_key = os.getenv('GEMINI_API_KEY')
 
 def chat_ai_text():
+    if st.session_state.username is None: 
+        st.error("ยังไม่ได้เข้าสู่ระบบ โปรดเข้าสู่ระบบ!")
+        return
+
     new_chat_button = None
     chat_response = None
     chat_header = None
@@ -104,10 +108,6 @@ def chat_ai_text():
         st.session_state.chat_history = []
         st.session_state.chat_header = []
         st.rerun()
-
-if st.session_state.username is None: 
-    st.error("ยังไม่ได้เข้าสู่ระบบ โปรดเข้าสู่ระบบ!")
-    st.stop()
 
 
 chat_ai_text()
